@@ -1,7 +1,12 @@
+import { SearchBox } from '@/components'
+
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between bg-black p-24 text-white/50'>
-      <h1>Home</h1>
+    <main className='mx-5 mt-5'>
+      <h1 className='mb-4 text-xl font-medium'>Weather Wise</h1>
+      <form>
+        <SearchBox />
+      </form>
     </main>
   )
 }
