@@ -13,10 +13,6 @@ const debounce = (fn: () => void) => {
   }
 }
 
-interface CityResponse {
-  cities: CityData[]
-}
-
 export default function SearchBox() {
   const [inputValue, setInputValue] = useState('')
   const [cities, setCities] = useState<CityData[]>([])
@@ -25,7 +21,7 @@ export default function SearchBox() {
     const fetchCities = async () => {
       try {
         const response = await fetch(`/api/city/${inputValue}`)
-        const { cities }: CityResponse = await response.json()
+        const cities: CityData[] = await response.json()
         setCities(cities)
       } catch (error) {
         console.error(error)
