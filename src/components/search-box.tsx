@@ -39,21 +39,25 @@ export default function SearchBox() {
 
   return (
     <>
-      <label htmlFor='city_name'>Search for local weather</label>
-      <input
-        type='search'
-        placeholder='City name'
-        className='mb-3 block w-64 rounded-lg bg-gray-200 p-2'
-        id='city_name'
-        value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
-      />
+      <form>
+        <label>
+          Search for local weather
+          <input
+            type='search'
+            placeholder='City name'
+            className='mb-3 block w-64 rounded-lg bg-gray-200 p-2'
+            value={inputValue}
+            onChange={(event) => setInputValue(event.target.value)}
+          />
+        </label>
+      </form>
+
       {inputValue.length >= MIN_CITY_CHARS && (
         <ul>
-          {cities.map((city) => (
-            <li key={city.id}>
-              <Link href={`/detail/${city.id}`}>
-                {city.name} {city.state} ({city.country})
+          {cities.map(({ id, name, state, country }) => (
+            <li key={id}>
+              <Link href={`/detail/city/${id}`}>
+                {name} {state} ({country})
               </Link>
             </li>
           ))}
