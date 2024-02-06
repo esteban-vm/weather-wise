@@ -1,5 +1,5 @@
 'use client'
-import type { CityData, CityResponse } from '@/types'
+import type { CityData } from '@/types'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
@@ -13,6 +13,10 @@ const debounce = (fn: () => void) => {
   }
 }
 
+interface CityResponse {
+  cities: CityData[]
+}
+
 export default function SearchBox() {
   const [inputValue, setInputValue] = useState('')
   const [cities, setCities] = useState<CityData[]>([])
@@ -21,8 +25,8 @@ export default function SearchBox() {
     const fetchCities = async () => {
       try {
         const response = await fetch(`/api/city/${inputValue}`)
-        const data: CityResponse = await response.json()
-        setCities(data.cities)
+        const { cities }: CityResponse = await response.json()
+        setCities(cities)
       } catch (error) {
         console.error(error)
       }
