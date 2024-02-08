@@ -1,14 +1,2 @@
-export interface CityData {
-  id: number
-  name: string
-  state: string
-  country: string
-  coord: {
-    lon: number
-    lat: number
-  }
-}
-
-export interface CityResponse {
-  cities: CityData[]
-}
+export type { default as CityData } from './city'
+export type { default as WeatherData } from './weather'

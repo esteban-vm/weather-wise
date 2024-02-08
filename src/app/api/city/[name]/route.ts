@@ -6,7 +6,7 @@ import { cities } from '@/lib'
 const cityList = <CityData[]>cities
 const NUM_SUGGESTIONS = 5
 
-function searchCities(value: string) {
+const searchCities = (value: string) => {
   const matchingCities = cityList
     .filter(({ name }) => name.toLowerCase().startsWith(value.toLowerCase()))
     .slice(0, NUM_SUGGESTIONS)
@@ -14,9 +14,9 @@ function searchCities(value: string) {
   return matchingCities
 }
 
-async function handler(_: NextRequest, { params: { name } }: { params: { name: string } }) {
+const handler = (_: NextRequest, { params: { name } }: { params: { name: string } }) => {
   const filteredCities = searchCities(name)
-  return NextResponse.json({ cities: filteredCities })
+  return NextResponse.json(filteredCities)
 }
 
 export { handler as GET }
